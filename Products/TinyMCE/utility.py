@@ -13,16 +13,13 @@ except ImportError:
 from zope.i18n import translate
 from zope.i18nmessageid import MessageFactory
 from zope.interface import classProvides
-from zope.interface import implements
+from zope.interface import implements, Interface
 from zope.schema.fieldproperty import FieldProperty
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from Acquisition import aq_parent
 from OFS.SimpleItem import SimpleItem
-from Products.Archetypes.Field import ImageField
-from Products.Archetypes.interfaces import IBaseObject
-from Products.Archetypes.interfaces.field import IImageField
 from Products.CMFCore.interfaces._content import IFolderish
 from Products.CMFCore.utils import getToolByName
 try:
@@ -40,6 +37,18 @@ from Products.TinyMCE.interfaces.utility import ITinyMCEToolbar
 from Products.TinyMCE.interfaces.utility import ITinyMCELibraries
 from Products.TinyMCE.interfaces.utility import ITinyMCEResourceTypes
 from Products.TinyMCE import TMCEMessageFactory as _
+
+# handle missing Archetypes
+try:
+    from Products.Archetypes.Field import ImageField
+    from Products.Archetypes.interfaces import IBaseObject
+    from Products.Archetypes.interfaces.field import IImageField
+except ImportError:
+    ImageField = None
+    class IImageField(Interface):
+        pass
+    class IBaseObject(Interface):
+        pass
 
 
 def form_adapter(context):

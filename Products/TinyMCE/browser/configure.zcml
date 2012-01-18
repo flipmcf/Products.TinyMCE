@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="tinymce">
 
     <browser:page
@@ -82,6 +83,7 @@
         />
 
     <browser:view
+        zcml:condition="installed Products.Archetypes"
         name="content_anchors"
         for="Products.Archetypes.interfaces.IBaseObject"
         class=".atanchors.ATAnchorView"

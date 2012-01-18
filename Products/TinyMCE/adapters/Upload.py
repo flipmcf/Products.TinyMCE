@@ -132,7 +132,7 @@ class Upload(object):
 
 
         # Set title + description.
-        # Attempt to use Archetypes mutator if there is one, in case it uses a custom storage
+        # Attempt to use CMF mutator if there is one, in case it uses a custom storage
         if title:
             try:
                 obj.setTitle(title)
